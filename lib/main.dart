@@ -25,12 +25,12 @@ class TodoListItem{
   String description;
 }
 
-List<TodoListItem> _getListItems(){
-  return List.from([
-    TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
-    TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
-  ]);
-}
+// List<TodoListItem> _getListItems(){
+//   return List.from([
+//     TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
+//     TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
+//   ]);
+// }
 
 class TodoListPage extends StatefulWidget {
   final String title;
@@ -38,14 +38,19 @@ class TodoListPage extends StatefulWidget {
   TodoListPage({this.title});
 
   @override
-  _TodoListState createState() => _TodoListState(listItems: _getListItems(), title: title);
+  _TodoListState createState() => _TodoListState(title: title);
 }
 
 class _TodoListState extends State<TodoListPage>{
+    
+  List<TodoListItem> listItems = List.from([
+    TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
+    TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
+  ]);
   
-  _TodoListState({this.listItems, this.title});
-  List<TodoListItem> listItems;
   final String title;
+
+  _TodoListState({this.title});
 
   @override
   Widget build(BuildContext context){
@@ -68,7 +73,10 @@ class _TodoListState extends State<TodoListPage>{
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: ()=>{},
+        onPressed: ()=>{
+          setState(()=>{
+            listItems.add(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long."))
+          })},
         ),
     );
   }

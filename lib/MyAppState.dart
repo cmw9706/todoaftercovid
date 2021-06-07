@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'TodoListItem.dart';
+import 'models/TodoListItem.dart';
 
 class MyAppState extends InheritedWidget{
 

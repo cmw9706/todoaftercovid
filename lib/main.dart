@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'MyAppState.dart';
+import 'TodoListItem.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,29 +10,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MyAppState(
+      listItems:  List.from([
+        TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
+        TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
+      ]),
+      child: MaterialApp(
       title: 'Life after COVID',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: TodoListPage(title: "Things I want to do after the plague"),
-    );
+    )
+    ); 
   }
 }
 
-class TodoListItem{
-  TodoListItem({this.title, this.description});
 
-  String title;
-  String description;
-}
 
-// List<TodoListItem> _getListItems(){
-//   return List.from([
-//     TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
-//     TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
-//   ]);
-// }
 
 class TodoListPage extends StatefulWidget {
   final String title;
@@ -42,18 +39,14 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoListPage>{
-    
-  List<TodoListItem> listItems = List.from([
-    TodoListItem(title: "Go to Austin, TX", description: "I want to go party on Congress street"),
-    TodoListItem(title: "Get tattooed in a different city", description: "Need to look up artist in Baltimore and Philly"),
-  ]);
-  
   final String title;
 
   _TodoListState({this.title});
 
   @override
   Widget build(BuildContext context){
+    List<TodoListItem> listItems = MyAppState.of(context).listItems;
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -75,7 +68,7 @@ class _TodoListState extends State<TodoListPage>{
         child: Icon(Icons.add),
         onPressed: ()=>{
           setState(()=>{
-            listItems.add(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long."))
+            MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
           })},
         ),
     );

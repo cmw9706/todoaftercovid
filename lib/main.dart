@@ -4,11 +4,8 @@ import 'package:redux/redux.dart';
 import 'package:todoaftercovid/pages/AddListItemPage.dart';
 import 'package:todoaftercovid/pages/TodoDetailsPage.dart';
 import 'package:todoaftercovid/pages/TodoListPage.dart';
-import 'package:todoaftercovid/redux/Actions.dart';
 import 'package:todoaftercovid/redux/AppState.dart';
 import 'package:todoaftercovid/redux/Reducers.dart';
-import 'MyAppState.dart';
-import 'models/TodoListItem.dart';
 
 void main() {
   runApp(MyApp());

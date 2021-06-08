@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../MyAppState.dart';
-import '../models/TodoListItem.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:todoaftercovid/models/TodoListItem.dart';
+import 'package:todoaftercovid/redux/AppState.dart';
 
 class TodoListPage extends StatelessWidget {
   final String title;
@@ -10,38 +10,37 @@ class TodoListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    List<TodoListItem> listItems = MyAppState.of(context).listItems;
     
-    return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-
-      return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        ),
-        body: Center(
-          child: ListView.builder(
-            itemCount: listItems.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                child: ListTile(
-                  title: Text('${listItems[index].title}'),
-                  subtitle: Text('${listItems[index].description}'),
-                  onTap:() =>{
-                    Navigator.pushNamed(context, "details", arguments: index)
-                  }
-                  ),
-              );
-            }
+    return StoreConnector<AppState, List<TodoListItem>>(
+      converter: (store) => store.state.items, 
+      builder: (context, items)=>
+         Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+            ),
+            body: Center(
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    child: ListTile(
+                      title: Text('${items[index].title}'),
+                      subtitle: Text('${items[index].description}'),
+                      onTap:() =>{
+                        Navigator.pushNamed(context, "details", arguments: index)
+                      }
+                      ),
+                  );
+                }
+              )
+            ),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: ()=>{
+                Navigator.pushNamed(context, "add")
+            },
           )
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: ()=>{
-            setState(()=>{
-              //MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
-            })},
-          ),
+        )
       );
-    });
   }
 }

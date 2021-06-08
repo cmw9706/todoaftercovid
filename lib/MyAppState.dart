@@ -8,10 +8,6 @@ class MyAppState extends InheritedWidget{
 
   final List<TodoListItem> listItems;
 
-  void addItemToList(TodoListItem newItem){
-    listItems.add(newItem);
-  }
-  
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
 

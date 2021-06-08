@@ -38,7 +38,7 @@ class TodoListPage extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: ()=>{
             setState(()=>{
-              MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
+              //MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
             })},
           ),
       );

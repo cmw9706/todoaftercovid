@@ -7,7 +7,6 @@ class MyAppState extends InheritedWidget{
   MyAppState({this.listItems, Widget child}) : super(child: child);
 
   final List<TodoListItem> listItems;
-  
 
   void addItemToList(TodoListItem newItem){
     listItems.add(newItem);

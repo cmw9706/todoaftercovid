@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoaftercovid/pages/NewTodoItemPage.dart';
 import 'package:todoaftercovid/pages/TodoDetailsPage.dart';
 import 'package:todoaftercovid/pages/TodoListPage.dart';
 import 'MyAppState.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Life after COVID',
       routes: {
         "details": (context) => TodoDetailsPage(),
+        "add" : (context) => NewTodoItemPage()
         },
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -11,7 +11,7 @@ class TodoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     List<TodoListItem> listItems = MyAppState.of(context).listItems;
-    
+
     return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
 
       return Scaffold(
@@ -37,9 +37,11 @@ class TodoListPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: ()=>{
-            setState(()=>{
-              MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
-            })},
+            // setState(()=>{
+            //   MyAppState.of(context).addItemToList(TodoListItem(title:"Get a hair cut", description:"Its seriously been too long.")) 
+            // })
+            Navigator.pushNamed(context, "add")
+          },
           ),
       );
     });

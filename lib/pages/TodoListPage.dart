@@ -9,8 +9,7 @@ class TodoListPage extends StatelessWidget {
   TodoListPage({this.title});
 
   @override
-  Widget build(BuildContext context){
-    
+  Widget build(BuildContext context){ 
     return StoreConnector<AppState, List<TodoListItem>>(
       converter: (store) => store.state.items, 
       builder: (context, items)=>

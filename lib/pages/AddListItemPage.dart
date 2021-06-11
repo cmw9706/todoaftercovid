@@ -39,10 +39,12 @@ class AddListItemPage extends StatelessWidget {
                   TextButton(
                     child: Text("ADD"),
                     onPressed: () => {
+
                       store.dispatch(AddTodoItemAction(
                           itemToAdd: TodoListItem(
                               title: titleController.text,
-                              description: descriptionController.text)))
+                              description: descriptionController.text))),
+                      Navigator.pop(context)
                     },
                   )
                 ])));
